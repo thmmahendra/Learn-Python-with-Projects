@@ -8,6 +8,7 @@
 # Keep track of the score
 # Tell the user their score
 
+
 import random
 
 questions = {
@@ -31,4 +32,4 @@ def python_trivia_game():
     selected_questions = random.sample(questions_list, total_questions)
     print(selected_questions)
 
-    python_trivia_game()
+python_trivia_game()
