@@ -30,6 +30,8 @@ def python_trivia_game():
     score = 0
     
     selected_questions = random.sample(questions_list, total_questions)
-    print(selected_questions)
+    
+    for idx, question in enumerate(selected_questions):
+        print(f"{idx + 1}. {question}")
 
 python_trivia_game()
