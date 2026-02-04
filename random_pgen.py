@@ -27,6 +27,25 @@ def generate_password():
     digits = string.digits if include_digits == "yes" else ""
     all_characters = lower + uppercase + special + digits
 
-    print(all_characters)
+    required_characters = []
+    if include_uppercase == "yes":
+        required_characters.append(random.choice(uppercase))
+    if include_special == "yes":
+        required_characters.append(random.choice(special))
+    if include_digits == "yes":
+        required_characters.append(random.choice(digits))
 
-generate_password()
+    remaining_length = length - len(required_characters)
+    password = required_characters
+
+    for _ in range(remaining_length):
+        character = random.choice(all_characters)
+        password.append(character)
+
+    random.shuffle(password)
+    
+    str_password = "".join(password)
+    return str_password
+
+password = generate_password()
+print(password)
