@@ -31,3 +31,17 @@ def main():
 
         choice = input("Enter your choice: ").strip()
 
+        if choice == "1":
+            view_tasks()
+        elif choice == "2":
+            create_tasks()
+        elif choice == "3":
+            mark_task_complete()
+        elif choice == "4":
+            print("Goodbye")
+            break
+        else:
+            print("Invalid choice. Please try again")
+
+main()
+
