@@ -4,8 +4,16 @@
 # 3. Mark items as complete
 # 4. Save items
 
+import json
+
+file_name = "todo_list.json"
+
 def load_tasks():
-    pass
+    try:
+        with open(file_name, "r") as file:
+            return json.load(file)
+    except:
+        return {"tasks": []}
 
 def save_tasks():
     pass
