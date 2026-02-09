@@ -15,14 +15,24 @@ def load_tasks():
     except:
         return {"tasks": []}
 
-def save_tasks():
-    pass
+def save_tasks(tasks):
+    try: 
+        with open(file_name, "w") as file:
+            json.dump(tasks, file)
+    except:
+        print("Failed to save")
 
 def view_tasks():
     pass
 
-def create_tasks():
-    pass
+def create_tasks(tasks):
+    description = input("Enter the tasks description: ").strip()
+    if description:
+        tasks["tasks"].append({"description": description, "complete": False})
+        save_tasks(tasks)
+        print("Tasks added.")
+    else:
+        print("Description cannot be empty.")
 
 def mark_task_complete():
     pass
@@ -42,7 +52,7 @@ def main():
         if choice == "1":
             view_tasks()
         elif choice == "2":
-            create_tasks()
+            create_tasks(tasks)
         elif choice == "3":
             mark_task_complete()
         elif choice == "4":
