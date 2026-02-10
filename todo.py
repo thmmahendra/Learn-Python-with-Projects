@@ -42,8 +42,18 @@ def create_tasks(tasks):
     else:
         print("Description cannot be empty.")
 
-def mark_task_complete():
-    pass
+def mark_task_complete(tasks):
+    view_tasks(tasks)
+    try:
+        task_number = int(input("Enter the task number to mark as complete: ").strip())
+        if 1 <= task_number <= len(tasks):
+            tasks["tasks"][task_number - 1]["complete"] = True
+            save_tasks(tasks)
+            print("Task marked as complete.")
+        else:
+            print("Invalid task number")
+    except:
+        print("Valid task number.")
 
 def main():
     tasks = load_tasks()
@@ -62,7 +72,7 @@ def main():
         elif choice == "2":
             create_tasks(tasks)
         elif choice == "3":
-            mark_task_complete()
+            mark_task_complete(tasks)
         elif choice == "4":
             print("Goodbye")
             break
