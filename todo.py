@@ -46,10 +46,23 @@ def mark_task_complete(tasks):
     view_tasks(tasks)
     try:
         task_number = int(input("Enter the task number to mark as complete: ").strip())
-        if 1 <= task_number <= len(tasks):
+        if 1 <= task_number <= len(tasks["tasks"]):
             tasks["tasks"][task_number - 1]["complete"] = True
             save_tasks(tasks)
             print("Task marked as complete.")
+        else:
+            print("Invalid task number")
+    except:
+        print("Valid task number.")
+
+def mark_task_incomplete(tasks):
+    view_tasks(tasks)
+    try:
+        task_number = int(input("Enter the task number to mark as incomplete: ").strip())
+        if 1 <= task_number <= len(tasks["tasks"]):
+            tasks["tasks"][task_number - 1]["complete"] = False
+            save_tasks(tasks)
+            print("Task marked as Incomplete.")
         else:
             print("Invalid task number")
     except:
@@ -63,7 +76,8 @@ def main():
         print("1. View Tasks")
         print("2. Add Tasks")
         print("3. Complete Tasks")
-        print("4. Exit")
+        print("4. Incomplete Tasks")
+        print("5. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -74,6 +88,8 @@ def main():
         elif choice == "3":
             mark_task_complete(tasks)
         elif choice == "4":
+            mark_task_incomplete(tasks)
+        elif choice == "5":
             print("Goodbye")
             break
         else:
