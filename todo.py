@@ -68,6 +68,24 @@ def mark_task_incomplete(tasks):
     except:
         print("Valid task number.")
 
+def delete_task(tasks):
+    view_tasks(tasks)
+    try:
+        task_number = int(input("Enter the task number to delete: ").strip())
+        if 1 <= task_number <= len(tasks["tasks"]):
+            task = tasks["tasks"][task_number - 1]
+            confirm = input(f"Are you sure you want to delete '{task['title']}'? (y/n):").strip().lower()
+            if confirm == "y":
+                tasks["tasks"].pop(task_number - 1)
+                save_tasks(tasks)
+                print("Task deleted sucessfully.")
+            else:
+                print("Delete cancelled.")
+        else:
+            print("Invalid task number.")
+    except:
+        print("Valid task numnber.")
+
 def main():
     tasks = load_tasks()
 
@@ -77,7 +95,8 @@ def main():
         print("2. Add Tasks")
         print("3. Complete Tasks")
         print("4. Incomplete Tasks")
-        print("5. Exit")
+        print("5. Delete Tasks")
+        print("6. Exit")
 
         choice = input("Enter your choice: ").strip()
 
@@ -90,6 +109,8 @@ def main():
         elif choice == "4":
             mark_task_incomplete(tasks)
         elif choice == "5":
+            delete_task(tasks)
+        elif choice == "6":
             print("Goodbye")
             break
         else:
