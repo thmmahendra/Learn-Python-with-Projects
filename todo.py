@@ -74,17 +74,21 @@ def delete_task(tasks):
         task_number = int(input("Enter the task number to delete: ").strip())
         if 1 <= task_number <= len(tasks["tasks"]):
             task = tasks["tasks"][task_number - 1]
-            confirm = input(f"Are you sure you want to delete '{task['title']}'? (y/n):").strip().lower()
+            title = task.get("title", "this title") # .get() use to avoid KeyError
+            confirm = input(f"Are you sure you want to delete '{title}'? (y/n): ").strip().lower()
+
             if confirm == "y":
                 tasks["tasks"].pop(task_number - 1)
                 save_tasks(tasks)
-                print("Task deleted sucessfully.")
+                print("Task deleted successfully.")
             else:
                 print("Delete cancelled.")
         else:
             print("Invalid task number.")
-    except:
-        print("Valid task numnber.")
+    except ValueError:
+        print("Please enter a valid number")
+    except Exception as e:
+        print("Unexpected error:", e)
 
 def main():
     tasks = load_tasks()
